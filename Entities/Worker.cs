@@ -14,7 +14,7 @@ namespace Course.Entities
 
         public Department Department { get; set; }
 
-        public List<HourContract> Contracts { get; set; } = new List<HourContract>();
+        public List<HourContract> Contracts { get; private set; } = new List<HourContract>();
 
         public Worker() { }
 
@@ -24,6 +24,7 @@ namespace Course.Entities
             Level = level;
             BaseSalary = baseSalary;
             Department = department;
+            Contracts = new List<HourContract>();
         }
 
         public void AddContract(HourContract contract)
@@ -36,7 +37,7 @@ namespace Course.Entities
             Contracts.Remove(contract);
         }
 
-        public double Income(int year, int month)
+        public double Income(int month, int year)
         {
             double sum = BaseSalary;
             foreach(HourContract contract in Contracts)
